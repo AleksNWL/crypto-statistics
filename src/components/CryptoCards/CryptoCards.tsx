@@ -2,20 +2,26 @@ import {getCoingeckoApi, transformData} from "../../api/coingeckoapi";
 import {useQuery} from "@tanstack/react-query";
 import {useState} from "react";
 import {Loader} from "../Loader/Loader.tsx";
+import {CryptoCard} from "../CryptoCard/CryptoCard.tsx";
 
 function CryptoChart() {
     const [page, setPage] = useState(1);
+    const [selectedItem, setSelectedItem] = useState(null);
+
     const {data, isLoading, isError, error} = useQuery({
         queryKey: ["coingecko", page],
         queryFn: async () => transformData(await getCoingeckoApi(page)),
+        staleTime: 1000 * 60 * 5,
+        cacheTime: 1000 * 60 * 10
     })
 
     if (isError) return <div>Error: {error.message}</div>;
 
     return (
-        <div>{isLoading ? <Loader />
-            :
-            <table>
+        <div>
+            {isLoading
+            ? <Loader />
+            : <table>
                 <thead>
                     <tr>
                         <th>#</th>
@@ -30,7 +36,7 @@ function CryptoChart() {
                 </thead>
                 <tbody>
                     {data.map(item => (
-                        <tr key={item.key} onClick={() => console.log(item.key)}>
+                        <tr key={item.key} onClick={() => setSelectedItem(item)}>
                             <td>{item.key}</td>
                             <td>
                                 <img src={item.logo} alt="logotype" style={{ width: "20px" }} />
@@ -47,11 +53,14 @@ function CryptoChart() {
             </table>
         }
             <div>
-                <button onClick={() => page > 0 ? setPage(page-1) : setPage(page) }>-</button>
+                <button onClick={() => page > 1 ? setPage(page-1) : setPage(page)}>-</button>
             </div>
+            <div>{page}</div>
             <div>
                 <button onClick={() => setPage(page+1)}>+</button>
             </div>
+
+            {selectedItem && <CryptoCard item={selectedItem} onClose={() => setSelectedItem(null)}/>}
         </div>
     );
 }
