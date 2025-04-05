@@ -1,11 +1,11 @@
-import {getCoingeckoApi, transformData} from "../../api/coingeckoapi";
+import {getCoingeckoApi, transformData} from "../../api/mainDataCoin.ts";
 import {useQuery} from "@tanstack/react-query";
 import {useState} from "react";
 import {Loader} from "../Loader/Loader.tsx";
 import {CryptoCard} from "../CryptoCard/CryptoCard.tsx";
 
 function CryptoChart() {
-    const [page, setPage] = useState(1);
+    const [page, setPage] = useState<number>(1);
     const [selectedItem, setSelectedItem] = useState(null);
 
     const {data, isLoading, isError, error} = useQuery({
@@ -60,7 +60,9 @@ function CryptoChart() {
                 <button onClick={() => setPage(page+1)}>+</button>
             </div>
 
-            {selectedItem && <CryptoCard item={selectedItem} onClose={() => setSelectedItem(null)}/>}
+            {selectedItem &&
+                (<CryptoCard item={selectedItem} onClose={() => setSelectedItem(null)} />
+            )}
         </div>
     );
 }

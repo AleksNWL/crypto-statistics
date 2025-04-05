@@ -1,4 +1,5 @@
 export interface responseCoingecko {
+    id: string;
     market_cap_rank: number;
     name: string;
     symbol: string;
@@ -15,6 +16,7 @@ export interface responseCoingecko {
 }
 
 export interface dataUI {
+    id: string;
     key: number;
     name: string;
     symbol: string;
