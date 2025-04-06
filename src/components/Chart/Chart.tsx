@@ -54,6 +54,12 @@ function Chart({ coin, intervalChart }: ChartProps) {
     const differencePrice: string = (lastPrice - firstPrice).toFixed(2);
     const percentageDifference: string = ((Number(differencePrice) * 100) / firstPrice).toFixed(2);
 
+    function formatCryptoPrice(value: number): string {
+        if (value >= 100) return `$${value.toFixed(2)}`;
+        if (value >= 1) return `$${value.toFixed(4)}`;
+        return `$${value.toFixed(8)}`;
+    }
+
     const chartData = {
         datasets: [
             {
@@ -83,6 +89,21 @@ function Chart({ coin, intervalChart }: ChartProps) {
             tooltip: {
                 mode: 'index' as const,
                 intersect: false,
+                callbacks: {
+                    label: function (context: any): string {
+                        const label = context.dataset.label || '';
+                        const value = context.parsed.y;
+
+                        let formattedValue = value.toFixed(8);
+                        if (value >= 1) {
+                            formattedValue = value.toFixed(4);
+                        }
+                        if (value >= 100) {
+                            formattedValue = value.toFixed(2);
+                        }
+                        return `${label}: $${formattedValue}`;
+                    }
+                }
             },
             legend: {
                 display: false,
@@ -108,10 +129,7 @@ function Chart({ coin, intervalChart }: ChartProps) {
             y: {
                 type: "linear" as const,
                 ticks: {
-                    callback: (value: number | string) => {
-                        const num = Number(value);
-                        return num > 0 ? `$${num.toFixed(2)}` : `$${num}`;
-                    },
+                    callback: (value: number | string) => formatCryptoPrice(Number(value)),
                     color: "#000000",
                 },
                 title: {

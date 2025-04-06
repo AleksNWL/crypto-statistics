@@ -1,3 +1,5 @@
+
+
 .modal-overlay {
     position: fixed;
     inset: 0;
@@ -10,7 +12,7 @@
     top: 50%;
     left: 50%;
     width: 90%;
-    max-width: 600px;
+    max-width: 1000px;
     background-color: #fdfdfd;
     border-radius: 8px;
     transform: translate(-50%, -50%);
