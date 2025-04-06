@@ -1,5 +1,5 @@
 import { transformDataChart } from "../../types/ChartData.ts";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { dataChart, transformChartData } from "../../api/mounthDataCoin.ts";
 import {
     Chart as ChartJS,
@@ -11,7 +11,10 @@ import {
     Title,
     Tooltip,
     Legend,
-    Filler
+    Filler,
+    ChartOptions,
+    ChartData,
+    TooltipItem
 } from "chart.js";
 
 import { Line } from "react-chartjs-2";
@@ -36,28 +39,49 @@ interface ChartProps {
     intervalChart: string;
 }
 
+type ChartPoint = {
+    x: number | Date | string;
+    y: number;
+};
+
 function Chart({ coin, intervalChart }: ChartProps) {
-    const { data, isLoading, isError, error } = useQuery({
+    const {
+        data,
+        isLoading,
+        isError,
+        error,
+    }: UseQueryResult<transformDataChart[], Error> = useQuery({
         queryKey: ["DataChart", coin, intervalChart],
         queryFn: async () => transformChartData(await dataChart(coin, intervalChart)),
         enabled: !!coin,
     });
 
-
-    if (isLoading) return <Loader/>;
+    if (isLoading) return <Loader />;
     if (isError) return <div>{error.message}</div>;
     if (!data) return <div className="chart-wrapper">Данные отсутствуют ;(</div>;
 
     const firstPrice: number = data[0]?.price;
     const lastPrice: number = data[data.length - 1]?.price;
     const isPositive: boolean = lastPrice >= firstPrice;
-    const differencePrice: string = (lastPrice - firstPrice).toFixed(2);
-    const percentageDifference: string = ((Number(differencePrice) * 100) / firstPrice).toFixed(2);
+    const differencePrice: string =
+        lastPrice > 10
+            ? (lastPrice - firstPrice).toFixed(2)
+            : (lastPrice - firstPrice).toFixed(10);
+    const percentageDifference: string = (
+        (Number(differencePrice) * 100) /
+        firstPrice
+    ).toFixed(2);
 
-    const chartData = {
+    function formatCryptoPrice(value: number): string {
+        if (value >= 100) return `$${value.toFixed(2)}`;
+        if (value >= 1) return `$${value.toFixed(4)}`;
+        return `$${value.toFixed(8)}`;
+    }
+
+    const chartData: ChartData<"line", ChartPoint[]> = {
         datasets: [
             {
-                label: `Цена ${coin}`,
+                label: `Price ${coin}`,
                 data: data.map((item: transformDataChart) => ({
                     x: item.timestamp,
                     y: item.price,
@@ -65,24 +89,38 @@ function Chart({ coin, intervalChart }: ChartProps) {
                 backgroundColor: isPositive
                     ? "rgba(59, 255, 186, 0.2)"
                     : "rgba(255,59,59,0.2)",
-                borderColor: isPositive
-                    ?"rgb(59, 255, 186)"
-                    :"rgb(255,59,59)",
-                fill: 'start' as const,
-
+                borderColor: isPositive ? "rgb(59, 255, 186)" : "rgb(255,59,59)",
+                fill: 'start',
                 pointRadius: 0,
                 pointHoverRadius: 0,
-            }
-        ]
+            },
+        ],
     };
 
-    const options = {
+    const options: ChartOptions<"line"> = {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
             tooltip: {
-                mode: 'index' as const,
+                mode: 'index',
                 intersect: false,
+                callbacks: {
+                    label: function (
+                        context: TooltipItem<"line">
+                    ): string {
+                        const label = context.dataset.label || '';
+                        const value = context.parsed.y;
+
+                        let formattedValue = value.toFixed(8);
+                        if (value >= 1) {
+                            formattedValue = value.toFixed(4);
+                        }
+                        if (value >= 100) {
+                            formattedValue = value.toFixed(2);
+                        }
+                        return `${label}: $${formattedValue}`;
+                    },
+                },
             },
             legend: {
                 display: false,
@@ -90,54 +128,53 @@ function Chart({ coin, intervalChart }: ChartProps) {
         },
         scales: {
             x: {
-                type: "time" as const,
+                type: "time",
                 time: {
-                    unit: "day" as const,
+                    unit: "day",
                     tooltipFormat: "HH:mm dd.MM.yyyy",
                 },
                 title: {
                     display: false,
                 },
                 ticks: {
-                    color: "#000000",
+                    color: "#ffffff",
                 },
                 grid: {
                     display: false,
-                }
+                },
             },
             y: {
-                type: "linear" as const,
+                type: "linear",
                 ticks: {
-                    callback: (value: number | string) => {
-                        const num = Number(value);
-                        return num > 0 ? `$${num.toFixed(2)}` : `$${num}`;
-                    },
-                    color: "#000000",
+                    callback: (value: string | number) =>
+                        formatCryptoPrice(Number(value)),
+                    color: "#ffffff",
                 },
                 title: {
                     display: false,
                 },
                 grid: {
                     display: false,
-                }
+                },
             },
         },
     };
 
-
     return (
         <div className="chart-wrapper">
-            {Number(percentageDifference) >= 0
-                ? <div className="positive position-difference-price">
+            {Number(percentageDifference) >= 0 ? (
+                <div className="positive position-difference-price">
                     <span>{percentageDifference}%</span>
-                    <br/>
+                    <br />
                     <span>{differencePrice}$</span>
                 </div>
-                : <div className="negative position-difference-price">
+            ) : (
+                <div className="negative position-difference-price">
                     <span>{percentageDifference}%</span>
-                    <br/>
+                    <br />
                     <span>{differencePrice}$</span>
-                </div>}
+                </div>
+            )}
             <Line data={chartData} options={options} />
         </div>
     );

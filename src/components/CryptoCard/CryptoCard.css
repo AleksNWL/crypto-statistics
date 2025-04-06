@@ -1,3 +1,5 @@
+
+
 .modal-overlay {
     position: fixed;
     inset: 0;
@@ -6,12 +8,12 @@
 
 .modal-content {
     position: fixed;
-    color: #0B0F2B;
+    color: #ffffff;
     top: 50%;
     left: 50%;
     width: 90%;
-    max-width: 600px;
-    background-color: #fdfdfd;
+    max-width: 1000px;
+    background-color: #0b0f2b;
     border-radius: 8px;
     transform: translate(-50%, -50%);
     padding: 20px;
@@ -25,11 +27,19 @@
 }
 
 .modal-close {
+    border: 2px solid #ffffff;
+    padding: 10px;
+    border-radius: 15px;
+    color: #fff;
     position: fixed;
     top: 1rem;
     right: 1rem;
     background: none;
-    border: none;
     font-size: 1.2rem;
     cursor: pointer;
+}
+
+.modal-close:hover {
+    background: #ffffff;
+    color: #0b0f2b;
 }

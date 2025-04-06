@@ -11,11 +11,11 @@
 }
 
 .positive {
-    color: #6eff4e;
+    color: rgb(59, 255, 186);
 }
 
 .negative {
-    color: #ff4e4e;
+    color: rgb(255,59,59);
 }
 
 .neutral {

@@ -2,12 +2,12 @@ import axios from 'axios'
 import {dataUI, responseCoingecko} from "../types/Coin.ts";
 
 
-export async function getCoingeckoApi(page: number, order: string) {
+export async function getCoingeckoApi(page: number, order: string, countPages: string) {
     const { data } = await axios.get(`https://api.coingecko.com/api/v3/coins/markets`, {
         params: {
             vs_currency: "usd",
             order: order,
-            per_page: 10,
+            per_page: countPages,
             page: page,
             sparkline: false
         },
