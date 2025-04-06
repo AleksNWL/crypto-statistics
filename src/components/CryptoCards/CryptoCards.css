@@ -1,0 +1,67 @@
+.CryptoCards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    font-size: 20px;
+}
+
+.coin-logo {
+    width: 3rem;
+}
+
+.page-container {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.page-button {
+    padding: 10px 20px;
+    border-radius: 15px;
+}
+
+table {
+    padding: 2rem;
+    width: 100%;
+    background: #244a7a;
+    border-radius: 2rem;
+}
+
+
+th, td {
+    text-align: center;
+    padding: 0.5rem;
+}
+
+@media (max-width: 760px) {
+    .CryptoCards {
+        font-size: 1.4rem;
+    }
+    table {
+        padding: 0.8rem;
+    }
+    .coin-mobile {
+        display: none;
+    }
+    th, td {
+        text-align: center;
+        padding: 0.2rem;
+    }
+}
+
+@media (max-width: 425px) {
+    .CryptoCards {
+        font-size: 1rem;
+    }
+    table {
+        padding: 1rem;
+    }
+    .coin-mobile {
+        display: none;
+    }
+    th, td {
+        text-align: center;
+        padding: 0.2rem;
+    }
+}

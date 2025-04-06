@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@radix-ui/react-dialog": "^1.1.6",
     "@tanstack/react-query": "^5.71.1",
     "axios": "^1.8.4",
     "chart.js": "^4.4.8",

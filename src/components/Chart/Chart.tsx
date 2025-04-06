@@ -39,7 +39,7 @@ function Chart({ coin }: ChartProps) {
         enabled: !!coin,
     });
 
-    if (!data) return <div>Нет данных для отображения</div>;
+    if (!data) return <div>Данные отстуствуют или загружаются</div>;
 
     const chartData = {
         datasets: [
@@ -76,7 +76,7 @@ function Chart({ coin }: ChartProps) {
             x: {
                 type: "time" as const,
                 time: {
-                    unit: "day",
+                    unit: "day" as const,
                     tooltipFormat: "HH:mm dd.MM.yyyy",
                 },
                 title: {
@@ -87,7 +87,7 @@ function Chart({ coin }: ChartProps) {
             y: {
                 type: "linear" as const,
                 ticks: {
-                    callback: (value: number) => `$${value.toFixed(2)}`
+                    callback: (value: number | string) => `$${Number(value).toFixed(2)}`
                 },
                 title: {
                     display: true,

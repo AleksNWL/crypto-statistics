@@ -1,0 +1,26 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.bitcoin {
+    width: 300px;
+    animation: bitcoin 5s linear infinite;
+    position: fixed;
+    left: -150px;
+    top: 150px;
+    z-index: -1;
+}
+
+@keyframes bitcoin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

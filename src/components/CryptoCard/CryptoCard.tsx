@@ -1,19 +1,32 @@
 import Chart from "../Chart/Chart.tsx";
+import './CryptoCard.css'
+import * as Dialog from "@radix-ui/react-dialog";
 
 
-export function CryptoCard ({item, onClose}) {
-    console.log(item.name)
-    console.log(item)
-    console.log(item.id);
+interface ICryptoCard {
+    item: {
+        name: string,
+        id: string,
+    },
+    onClose: () => void,
+    open: boolean,
+}
+
+export function CryptoCard ({item, onClose, open}: ICryptoCard) {
     return (
-        <div>
-            <button onClick={onClose}>Close</button>
-            <div>
-                <h2>{item.name}</h2>
+        <Dialog.Root open={open}>
+            <Dialog.Overlay className="modal-overlay"></Dialog.Overlay>
+            <Dialog.Content className="modal-content">
                 <div>
-                    <Chart coin={item.id}/>
+                    <Dialog.Title className="modal-header">g{item.name}</Dialog.Title>
+                    <div>
+                        <Chart coin={item.id}/>
+                    </div>
                 </div>
-            </div>
-        </div>
+                <Dialog.Close>
+                    <button className="modal-close" onClick={onClose}>Close</button>
+                </Dialog.Close>
+            </Dialog.Content>
+        </Dialog.Root>
     )
 }
