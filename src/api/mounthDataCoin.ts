@@ -2,11 +2,11 @@ import axios from "axios";
 import {chartData, transformDataChart} from "../types/ChartData.ts";
 
 
-export async function dataChart(coin: string) {
+export async function dataChart(coin: string, intervalChart: string) {
     const { data } = await axios.get(`https://api.coingecko.com/api/v3/coins/${coin}/market_chart`, {
         params: {
             vs_currency: "usd",
-            days: "7",
+            days: intervalChart,
         }
     });
     return data;

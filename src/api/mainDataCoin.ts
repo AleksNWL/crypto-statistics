@@ -2,11 +2,11 @@ import axios from 'axios'
 import {dataUI, responseCoingecko} from "../types/Coin.ts";
 
 
-export async function getCoingeckoApi(page: number) {
+export async function getCoingeckoApi(page: number, order: string) {
     const { data } = await axios.get(`https://api.coingecko.com/api/v3/coins/markets`, {
         params: {
             vs_currency: "usd",
-            order: "market_cap_desc",
+            order: order,
             per_page: 10,
             page: page,
             sparkline: false
@@ -19,6 +19,20 @@ export async function getCoingeckoApi(page: number) {
     return data;
 }
 
+export function trasformBigSum(value: number): string {
+    if (value >= 1_000_000_000_000) {
+        return (value / 1_000_000_000_000).toFixed(2) + "T";
+    } else if (value >= 1_000_000_000) {
+        return (value / 1_000_000_000).toFixed(2) + "B";
+    } else if (value >= 1_000_000) {
+        return (value / 1_000_000).toFixed(2) + "M";
+    } else if (value >= 1_000) {
+        return (value / 1_000).toFixed(2) + "K";
+    } else {
+        return value.toString();
+    }
+}
+
 export function transformData(data: responseCoingecko[]): dataUI[] {
     return data.map((item, index) => ({
         id: item.id,
@@ -26,12 +40,12 @@ export function transformData(data: responseCoingecko[]): dataUI[] {
         name: item.name,
         symbol: item.symbol.toUpperCase(),
         logo: item.image,
-        totalVolume: item.total_volume,
+        priceChangePercentage24h: item.price_change_percentage_24h !== null
+            ? Number((item.price_change_percentage_24h).toFixed(2))
+            : null,
+        totalVolume: trasformBigSum(item.total_volume),
         currentPrice: item.current_price,
-        marketCap: item.market_cap,
-        priceChange1h: item.price_change_percentage_1h_in_currency,
-        priceChange24h: item.price_change_percentage_24h_in_currency,
-        priceChange7d: item.price_change_percentage_7d_in_currency,
+        marketCap: trasformBigSum(item.market_cap),
         priceChangeATL: item.atl_change_percentage,
         maxPrice24h: item.high_24h,
         minPrice24h: item.low_24h,

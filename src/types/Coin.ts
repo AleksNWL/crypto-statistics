@@ -4,12 +4,10 @@ export interface responseCoingecko {
     name: string;
     symbol: string;
     image: string;
+    price_change_percentage_24h: number;
     total_volume: number;
     current_price: number;
     market_cap: number;
-    price_change_percentage_1h_in_currency: number;
-    price_change_percentage_24h_in_currency: number;
-    price_change_percentage_7d_in_currency: number;
     atl_change_percentage: number;
     high_24h: number;
     low_24h: number;
@@ -21,13 +19,11 @@ export interface dataUI {
     name: string;
     symbol: string;
     logo: string;
-    totalVolume: number;
+    priceChangePercentage24h: number | null;
+    totalVolume: string;
     currentPrice: number;
-    marketCap: number;
-    priceChange1h: number;
-    priceChange24h: number;
-    priceChange7d: number;
+    marketCap: string;
     priceChangeATL: number;
     maxPrice24h: number;
-    minPrice24h: number;
+    minPrice24h: number
 }
