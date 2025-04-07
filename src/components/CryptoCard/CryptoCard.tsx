@@ -31,7 +31,7 @@ export function CryptoCard ({item, onClose, open}: ICryptoCard) {
                         <option value="180">180days</option>
                         <option value="365">1year</option>
                     </select>
-                    <Dialog.Title className="modal-header">{item.name}</Dialog.Title>
+                    <Dialog.Title className="modal-header">{item.name} {item.id}</Dialog.Title>
                     <div>
                         <Chart coin={item.id} intervalChart={intervalChart}/>
                     </div>
