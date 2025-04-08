@@ -34,14 +34,13 @@
 }
 
 .page-button {
+    transform: scale(2);
     border-radius: 50%;
     padding: 0.5rem 1rem;
-    border: 1px solid white;
 }
 
 .page-button:hover {
-    transform: scale(1.2);
-    background-color: #222222;
+    transform: scale(4);
     cursor: pointer;
 }
 

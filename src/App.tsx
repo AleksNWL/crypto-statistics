@@ -10,12 +10,14 @@ const App = () => {
     const [selectedButtonChat, setSelectedButtonChat] = useState<boolean>(false);
 
     return (
-        <div className="main">
-            <img className="logo-chat" src={Chat} alt="chat" onClick={() => setSelectedButtonChat(true)}/>
-            <h1>Crypto Prices</h1>
-            <CryptoCards/>
+        <div>
             <StarryBackground/>
-            {selectedButtonChat && <CryptoChat onClose={() => setSelectedButtonChat(false)} />}
+            <div className="main">
+                <img className="logo-chat" src={Chat} alt="chat" onClick={() => setSelectedButtonChat(true)}/>
+                <h1>Crypto Prices</h1>
+                <CryptoCards/>
+                {selectedButtonChat && <CryptoChat onClose={() => setSelectedButtonChat(false)} />}
+            </div>
         </div>
     );
 };
