@@ -11,7 +11,8 @@ import {
     Title,
     Tooltip,
     Legend,
-    Filler
+    Filler,
+    TooltipItem
 } from "chart.js";
 
 import { Line } from "react-chartjs-2";
@@ -43,7 +44,6 @@ function Chart({ coin, intervalChart }: ChartProps) {
         enabled: !!coin,
     });
 
-
     if (isLoading) return <Loader/>;
     if (isError) return <div>{error.message}</div>;
     if (!data) return <div className="chart-wrapper">Данные отсутствуют ;(</div>;
@@ -54,10 +54,11 @@ function Chart({ coin, intervalChart }: ChartProps) {
     const differencePrice: string = lastPrice > 10 ? (lastPrice - firstPrice).toFixed(2) : (lastPrice - firstPrice).toFixed(10);
     const percentageDifference: string = ((Number(differencePrice) * 100) / firstPrice).toFixed(2);
 
+
     const chartData = {
         datasets: [
             {
-                label: `Цена ${coin}`,
+                label: `Price ${coin}`,
                 data: data.map((item: transformDataChart) => ({
                     x: item.timestamp,
                     y: item.price,
@@ -83,6 +84,21 @@ function Chart({ coin, intervalChart }: ChartProps) {
             tooltip: {
                 mode: 'index' as const,
                 intersect: false,
+                callbacks: {
+                    label: function (context: TooltipItem<"line">): string {
+                        const label = context.dataset.label || '';
+                        const value = context.parsed.y;
+
+                        let formattedValue = value.toFixed(8);
+                        if (value >= 1) {
+                            formattedValue = value.toFixed(4);
+                        }
+                        if (value >= 100) {
+                            formattedValue = value.toFixed(2);
+                        }
+                        return `${label}: $${formattedValue}`;
+                    }
+                }
             },
             legend: {
                 display: false,

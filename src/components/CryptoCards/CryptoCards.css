@@ -76,7 +76,7 @@ th, td {
 
 @media (max-width: 425px) {
     .CryptoCards {
-        font-size: 1rem;
+        font-size: 0.75rem;
     }
     table {
         padding: 1rem;
