@@ -7,6 +7,12 @@
     padding: 16px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
+
+    .position-difference-price {
+        position: fixed;
+        top: 6rem;
+        right: 2rem;
+    }
 }
 
 .chart-wrapper:hover {
@@ -14,17 +20,13 @@
 }
 
 .positive {
-    font-weight: bold;
     color: rgb(59, 255, 186);
+    font-weight: bold;
     text-shadow: rgba(133, 133, 133, 0.29) 1px 0 10px;
 }
 
 .negative {
     color: rgb(255,59,59);
-}
-
-.position-difference-price {
-    position: fixed;
-    top: 6rem;
-    right: 2rem;
+    font-weight: bold;
+    text-shadow: rgba(133, 133, 133, 0.29) 1px 0 10px;
 }

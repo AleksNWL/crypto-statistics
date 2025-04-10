@@ -1,7 +1,7 @@
 import { useState, useCallback, FormEvent } from "react";
 import { useSocket } from "../../api/useSocket";
 import { ChatMessage, MessageType } from "../../types/Chat.ts";
-import "./CryptoChat.css"
+import "./CryptoChat.scss"
 
 
 interface onCloseType {
@@ -85,7 +85,7 @@ export default function CryptoChat({onClose}: onCloseType) {
                 </form>
 
                 <div>
-                    Статус: {socket?.connected ? "Подключено" : "Не подключено"}
+                    Статус: <span className={socket?.connected ? "connected" : "no-connected"}>{socket?.connected ? "Подключено✅" : "Не подключено❌"}</span>
                 </div>
             </div>
         </div>

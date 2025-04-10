@@ -17,7 +17,7 @@ import {
 
 import { Line } from "react-chartjs-2";
 import 'chartjs-adapter-date-fns';
-import './Chart.css';
+import './Chart.scss';
 import Loader from "../Loader/Loader.tsx";
 
 ChartJS.register(
@@ -143,7 +143,7 @@ function Chart({ coin, intervalChart }: ChartProps) {
 
     return (
         <div className="chart-wrapper">
-            {Number(percentageDifference) >= 0
+            {isPositive
                 ? <div className="positive position-difference-price">
                     <span>{percentageDifference}%</span>
                     <br/>

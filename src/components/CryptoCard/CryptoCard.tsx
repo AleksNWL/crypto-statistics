@@ -1,5 +1,5 @@
 import Chart from "../Chart/Chart.tsx";
-import './CryptoCard.css'
+import './CryptoCard.scss'
 import * as Dialog from "@radix-ui/react-dialog";
 import {useState} from "react";
 

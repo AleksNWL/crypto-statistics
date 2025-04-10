@@ -1,0 +1,84 @@
+.modal {
+    &-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+    }
+
+    &-content {
+        position: fixed;
+        color: #ffffff;
+        top: 50%;
+        left: 50%;
+        width: 90%;
+        max-width: 1000px;
+        background-color: #0b0f2b;
+        border-radius: 8px;
+        transform: translate(-50%, -50%);
+        padding: 2rem 1rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+
+        .modal-message {
+            padding: 1rem;
+            background-color: #1a2961;
+            min-height: 300px;
+            border-radius: 15px;
+            margin: 1rem;
+        }
+    }
+
+    &-form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+
+        .modal-input {
+            background-color: #1a2961;
+            color: #ffffff;
+            border: 2px solid #ffffff;
+            padding: 5px;
+            text-align: center;
+            border-radius: 5px;
+
+            &::placeholder {
+                color: #ffffff;
+            }
+        }
+    }
+
+    &-button {
+        padding: 0.5rem;
+        border-radius: 15px;
+        background-color: #1a2961;
+        color: #ffffff;
+
+        &:disabled {
+            background-color: #1a2961;
+            color: #ffffff;
+        }
+
+        &:hover {
+            transform: scale(1.2);
+            background-color: #ffffff;
+            color: #1a2961;
+        }
+
+        &-close {
+            position: fixed;
+            top: 5px;
+            right: 5px;
+            padding: 0.5rem 1rem;
+        }
+    }
+}
+
+.connected {
+    font-weight: bold;
+    color: #31a366;
+}
+
+.no-connected {
+    color: #a33131;
+}

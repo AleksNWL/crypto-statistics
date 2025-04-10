@@ -7,51 +7,6 @@
     padding: 20px;
 }
 
-.bitcoin {
-    width: 300px;
-    animation: bitcoin 5s linear infinite;
-    position: fixed;
-    left: -150px;
-    top: -50px;
-    z-index: -1;
-}
-
-.eth {
-    width: 300px;
-    animation: acute-angle 5s linear infinite;
-    position: fixed;
-    right: 150px;
-    bottom: 50px;
-    z-index: -1;
-}
-
-.tron {
-    width: 200px;
-    animation: tron 5s linear infinite;
-    position: fixed;
-    right: 100px;
-    top: 100px;
-    z-index: -1;
-}
-
-.tether {
-    width: 300px;
-    animation: acute-angle 5s linear infinite;
-    position: fixed;
-    left: 200px;
-    bottom: 400px;
-    z-index: -1;
-}
-
-.eos {
-    width: 300px;
-    animation: tron 10s linear infinite;
-    position: fixed;
-    left: 50px;
-    bottom: 0;
-    z-index: -1;
-}
-
 .logo-chat {
     width: 100px;
     position: fixed;
@@ -59,75 +14,14 @@
     right: 5px;
 }
 
-@keyframes bitcoin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-@keyframes tron {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(-360deg);
-    }
-}
-
-@keyframes acute-angle{
-    0% {
-        transform: rotate(0deg);
-    }
-    25% {
-        transform: rotate(25deg);
-    }
-    75% {
-        transform: rotate(-25deg);
-    }
-    100% {
-        transform: rotate(0deg);
-    }
-}
-
 @media (max-width: 760px) {
     .logo-chat {
         width: 75px;
-    }
-    .tron {
-        right: 100px;
-        left: 10px;
-        top: 10px;
-    }
-    .bitcoin {
-        left: -50px;
-        width: 200px;
-    }
-    .eth {
-        right: -150px;
-        bottom: 50px;
-        width: 300px;
     }
 }
 
 @media (max-width: 425px) {
     .logo-chat {
         width: 75px;
-    }
-    .tron {
-        left: 10px;
-        top: 10px;
-    }
-    .bitcoin {
-        left: -50px;
-        top: 500px;
-        width: 200px;
-    }
-    .eth {
-        right: -150px;
-        bottom: 50px;
-        width: 300px;
     }
 }

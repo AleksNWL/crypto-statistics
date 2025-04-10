@@ -3,7 +3,7 @@ import "./App.css"
 import Chat from "./assets/chat.svg"
 import CryptoChat from "./components/CryptoChat/CryptoChat";
 import {useState} from "react";
-import StarryBackground from "./components/StarryBackground.tsx";
+import StarryBackground from "./components/StarryBackground/StarryBackground.tsx";
 
 
 const App = () => {

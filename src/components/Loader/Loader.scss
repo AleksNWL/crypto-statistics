@@ -26,10 +26,11 @@
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
-.loader-message{
+
+.loader-message {
     margin-top: 10px;
     font-size: 22px;
     font-weight: 600;
-    color : #2F73A3;
+    color : #a9daff;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }

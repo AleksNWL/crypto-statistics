@@ -1,0 +1,114 @@
+.CryptoCards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    font-size: 20px;
+
+    .background-table {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem;
+        width: 100%;
+        background: #244a7a;
+        border-radius: 2rem;
+    }
+
+    .select-count-cards {
+        padding: 0.4rem 1rem;
+        border-radius: 2rem;
+        background: #3875c3;
+        color: #fff;
+        border: none;
+    }
+
+    .sort-button {
+        cursor: pointer;
+    }
+
+    .coin-logo {
+        width: 3rem;
+    }
+
+    .page-container {
+        display: flex;
+        font-size: 2rem;
+        flex-direction: row;
+        gap: 2rem;
+    }
+
+    .page-button {
+        transform: scale(2);
+        border-radius: 50%;
+    }
+
+    .page-button:hover {
+        transform: scale(4);
+        cursor: pointer;
+    }
+
+
+    th, td {
+        text-align: center;
+        padding: 0.5rem;
+    }
+
+    @media (max-width: 760px) {
+        .CryptoCards {
+            font-size: 1.4rem;
+        }
+        .background-table {
+            padding: 0.8rem;
+        }
+        .select-count-cards {
+            font-size: 1rem;
+            padding: 0.2rem 1rem;
+        }
+        .coin-mobile {
+            display: none;
+        }
+        th, td {
+            text-align: center;
+            padding: 0.2rem;
+        }
+    }
+
+    @media (max-width: 425px) {
+        .CryptoCards {
+            font-size: 0.7rem;
+        }
+        .background-table {
+            padding: 1rem;
+        }
+        .select-count-cards {
+            font-size: 0.75rem;
+            padding: 0.2rem 0.5rem;
+        }
+        .coin-mobile {
+            display: none;
+        }
+        th, td {
+            text-align: center;
+            padding: 0.2rem;
+        }
+        table {
+            table-layout: fixed; // Фиксированная ширина таблицы
+            width: 100%;          // Занимает всю доступную ширину
+        }
+
+        .coin-name {
+            max-width: 200px;     // Максимальная ширина для ячейки с названием
+            overflow: hidden;     // Скрытие выходящего за пределы контента
+            text-overflow: ellipsis; // Добавление троеточия
+            white-space: nowrap;  // Запрет переноса текста
+            padding: 5px !important; // Уменьшение отступов
+        }
+    }
+}
+
+.positive { color: rgb(59, 255, 186); }
+.negative { color: rgb(255, 59, 59); }
+.neutral { color: #6a6a6a; }
+
+.coin-logo { width: 3rem; }
