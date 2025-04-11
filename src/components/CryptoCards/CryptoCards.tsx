@@ -154,8 +154,8 @@ function CryptoChart() {
                             <td className={item.priceChangePercentage24h === null ? "neutral" : item.priceChangePercentage24h < 0 ? "negative" : "positive"}>
                                 {item.priceChangePercentage24h != null ? `${item.priceChangePercentage24h}%` : "N/A"}
                             </td>
-                            <td className="coin-mobile">{item.marketCap}</td>
-                            <td className="coin-mobile">{item.totalVolume}</td>
+                            <td className={`coin-mobile ${item.marketCap === null ? "neutral" : ""}`}>{item.marketCap ?? "N/A"}</td>
+                            <td className={`coin-mobile ${item.totalVolume === null ? "neutral" : ""}`}>{item.totalVolume ?? "N/A"}</td>
                         </tr>
                     ))}
                     </tbody>

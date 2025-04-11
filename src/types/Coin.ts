@@ -5,9 +5,9 @@ export interface responseCoingecko {
     symbol: string;
     image: string;
     price_change_percentage_24h: number;
-    total_volume: number;
-    current_price: number;
-    market_cap: number;
+    total_volume: number | null;
+    current_price: number | null;
+    market_cap: number | null;
     atl_change_percentage: number;
     high_24h: number;
     low_24h: number;

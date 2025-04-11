@@ -20,6 +20,7 @@ export async function getCoingeckoApi(page: number, order: string, countPages: s
 }
 
 export function trasformBigSum(value: number): string {
+    if (value === null || value === undefined) return "N/A";
     if (value >= 1_000_000_000_000) {
         return (value / 1_000_000_000_000).toFixed(2) + "T";
     } else if (value >= 1_000_000_000) {
@@ -43,9 +44,9 @@ export function transformData(data: responseCoingecko[]): dataUI[] {
         priceChangePercentage24h: item.price_change_percentage_24h !== null
             ? Number((item.price_change_percentage_24h).toFixed(2))
             : null,
-        totalVolume: trasformBigSum(item.total_volume),
-        currentPrice: item.current_price,
-        marketCap: trasformBigSum(item.market_cap),
+        totalVolume: trasformBigSum(item.total_volume ?? 0),
+        currentPrice: item.current_price ?? 0,
+        marketCap: trasformBigSum(item.market_cap ?? 0),
         priceChangeATL: item.atl_change_percentage,
         maxPrice24h: item.high_24h,
         minPrice24h: item.low_24h,
