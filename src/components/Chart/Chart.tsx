@@ -154,7 +154,7 @@ function Chart({ coin, intervalChart }: ChartProps) {
                     <br/>
                     <span>{differencePrice}$</span>
                 </div>}
-            <Line data={chartData} options={options} />
+            <Line data={chartData} options={options} style={{marginTop: '50px'}}/>
         </div>
     );
 }

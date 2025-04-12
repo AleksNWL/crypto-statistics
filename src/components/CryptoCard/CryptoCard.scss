@@ -1,10 +1,11 @@
-.modal-overlay {
+.card-overlay {
     position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, 0.5);
 }
 
-.modal-content {
+.card-content {
+    display: flex;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -13,31 +14,244 @@
     width: 90%;
     max-width: 1000px;
     background-color: #0b0f2b;
-    border-radius: 8px;
+    border-radius: 40px;
     padding: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    max-height: 90vh;
+    overflow-y: auto;
+    outline: none;
+    scroll-behavior: smooth;
+    flex-direction: column;
 
-    .modal-header {
+    &::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+    &::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 4px;
+        &:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+    }
+
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) rgba(0, 0, 0, 0.1);
+
+    &:focus-visible {
+        box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+    }
+    .card-control {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px;
+        .card-close {
+            border: 2px solid #ffffff;
+            padding: 10px;
+            border-radius: 15px;
+            color: #fff;
+            background: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+
+            &:hover {
+                background: #ffffff;
+                color: #0b0f2b;
+            }
+        }
+    }
+
+    .card-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        padding: 10px;
+        margin-bottom: 25px;
+        border-top: 5px solid #3875c3;
+        border-bottom: 5px solid #3875c3;
+        border-radius: 25px;
     }
 
-    .modal-close {
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
-        border: 2px solid #ffffff;
-        padding: 10px;
-        border-radius: 15px;
-        color: #fff;
-        background: none;
-        font-size: 1.2rem;
-        cursor: pointer;
+    .card-description {
+        width: 200px;
+        text-align: center;
+        font-size: 1rem;
+        margin: 0 auto;
+        color: rgba(255, 255, 255, 0.47);
+    }
+}
 
+.select-time {
+    padding: 0.4rem 1rem;
+    border-radius: 2rem;
+    background: #3875c3;
+    color: #fff;
+    border: none;
+}
+
+.data-coin {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    flex-direction: row;
+    justify-content: center;
+    gap: 50px;
+}
+
+.container-data {
+    min-width: 280px;
+    max-width: 300px;
+    padding: 0.4rem 1rem;
+    border: 1px solid #3875c3;
+    border-radius: 2rem;
+    background: #0b0f2b;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.container-inner {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    padding-top: 16px;
+    width: 95%;
+    border-top: 1px solid #3875c3;
+}
+
+.all-time-l-h {
+    max-width: 300px;
+    margin: 0 auto;
+    display: flex;
+    gap: 1rem;
+    justify-content: space-evenly;
+
+    .all-time-header {
+        margin: 0 auto 10px;
+        border-bottom: 1px solid #3875c3;
+        padding: 5px;
+        border-radius: 10px;
+    }
+
+    .all-time-l {
+        display: flex;
+        flex-direction: column;
+    }
+    .all-time-h {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.progress-container {
+    margin: 2rem 0;
+    padding: 0.4rem 1rem;
+    border: 1px solid #3875c3;
+    border-radius: 2rem;
+    background: #0b0f2b;
+
+    .progress-header {
+        display: flex;
+        padding: 16px;
+        font-weight: bold;
+    }
+
+    .progress-bar {
+        height: 15px;
+        background: #fff;
+        border-radius: 25px;
+    }
+
+    .progress-fill {
+        height: 100%;
+        border-radius: 25px;
+    }
+
+    .progress-labels {
+        padding-top: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+}
+
+
+.positive { color: rgb(59, 255, 186); }
+.negative { color: rgb(255, 59, 59); }
+.neutral { color: #6a6a6a; }
+
+.card-content {
+    max-height: 90vh;
+    overflow-y: auto;
+    outline: none;
+    scroll-behavior: smooth;
+
+    &::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+    &::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 4px;
         &:hover {
-            background: #ffffff;
-            color: #0b0f2b;
+            background: rgba(255, 255, 255, 0.5);
         }
+    }
+
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) rgba(0, 0, 0, 0.1);
+
+    &:focus-visible {
+        box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+    }
+}
+
+.card-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.bold {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+
+@media (max-width: 425px) {
+    .data-coin {
+        gap: 10px;
+    }
+
+    .container-data {
+        margin: 1rem 0;
+    }
+
+    .progress-container {
+        margin: 2rem 0;
+    }
+
+    .progress-label {
+        max-width: 100px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        padding: 5px !important;
+    }
+    .progress-label {
+        display: none;
     }
 }

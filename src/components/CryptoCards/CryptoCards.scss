@@ -40,11 +40,10 @@
 
     .page-button {
         transform: scale(2);
-        border-radius: 50%;
     }
 
     .page-button:hover {
-        transform: scale(4);
+        transform: scale(3);
         cursor: pointer;
     }
 
@@ -100,8 +99,8 @@
             padding: 0.2rem;
         }
         table {
-            table-layout: fixed; // Фиксированная ширина таблицы
-            width: 100%;          // Занимает всю доступную ширину
+            table-layout: fixed;
+            width: 100%;
         }
 
         .coin-name {

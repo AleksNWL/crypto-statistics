@@ -14,7 +14,7 @@ const App = () => {
             <StarryBackground/>
             <div className="main">
                 <img className="logo-chat" src={Chat} alt="chat" onClick={() => setSelectedButtonChat(true)}/>
-                <h1>Crypto Prices</h1>
+                <h1 style={{paddingBottom: "1rem"}}>Crypto Prices</h1>
                 <CryptoCards/>
                 {selectedButtonChat && <CryptoChat onClose={() => setSelectedButtonChat(false)} />}
             </div>
