@@ -36,6 +36,8 @@ const StarryBackground = () => {
             }
         }
 
+        initStars();
+
         const animate = (time: number) => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
