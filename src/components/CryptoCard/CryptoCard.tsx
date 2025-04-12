@@ -21,6 +21,7 @@ export function CryptoCard ({item, onClose, open}: ICryptoCard) {
             <Dialog.Content className="modal-content">
                 <div>
                     <select
+                        className="modal-select"
                         value={intervalChart}
                         onChange={(evt) => setIntervalChart(evt.target.value)}
                     >

@@ -20,6 +20,7 @@ export async function getCoingeckoApi(page: number, order: string, countPages: s
 }
 
 export function trasformBigSum(value: number): string {
+    if (value === null || value === undefined) return "N/A";
     if (value >= 1_000_000_000_000) {
         return (value / 1_000_000_000_000).toFixed(2) + "T";
     } else if (value >= 1_000_000_000) {

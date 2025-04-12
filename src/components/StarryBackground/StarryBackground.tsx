@@ -3,6 +3,7 @@ import { useRef, useEffect} from "react";
 
 const StarryBackground = () => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
+    const starsRef = useRef<{x: number, y: number, baseRadius: number, speed: number, offset: number}[]>([]);
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -12,18 +13,27 @@ const StarryBackground = () => {
         if (!ctx) return;
 
         const countStars = 500;
-        const stars: {x: number; y: number, baseRadius: number, speed: number, offset: number}[] = [];
+        const stars = starsRef.current;
 
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        for (let i = 0; i < countStars; i++) {
-            stars.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                baseRadius: Math.random() * 2,
-                speed: Math.random() * 0.5 + .5,
-                offset: Math.random() * Math.PI * 0.5,
-            });
+        const initStars = () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            if (stars.length === 0) {
+                for (let i = 0; i < countStars; i++) {
+                    stars.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height,
+                        baseRadius: Math.random() * 2,
+                        speed: Math.random() * 0.5 + .5,
+                        offset: Math.random() * Math.PI * 0.5,
+                    });
+                }
+            } else {
+                for (let i = 0; i < stars.length; i++) {
+                    stars[i].x = Math.random() * canvas.width;
+                    stars[i].y = Math.random() * canvas.height;
+                }
+            }
         }
 
         const animate = (time: number) => {
@@ -48,7 +58,18 @@ const StarryBackground = () => {
             }
             requestAnimationFrame(animate);
         };
-        requestAnimationFrame(animate);
+        const animationID = requestAnimationFrame(animate);
+
+        const handleResize = () => {
+            initStars();
+        }
+
+        window.addEventListener("resize", handleResize);
+
+        return () => {
+            window.removeEventListener("resize", handleResize);
+            cancelAnimationFrame(animationID)
+        }
     }, [])
     return <canvas ref={canvasRef} style={{position: "fixed", zIndex: -1}} />;
 }
