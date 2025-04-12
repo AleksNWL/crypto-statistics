@@ -64,50 +64,50 @@ function CryptoChart() {
                             <td className="coin-mobile"><Skeleton
                                 width={20}
                                 baseColor="#79a6c8"
-                                highlightColor="#256a85"
+                                highlightColor="#3875c3"
                                 duration={5}
                             /></td>
                             <td><Skeleton
                                 circle
-                                height={32}
-                                width={32}
+                                height={48}
+                                width={48}
                                 baseColor="#79a6c8"
-                                highlightColor="#256a85"
+                                highlightColor="#3875c3"
                                 duration={5}
                             /></td>
                             <td><Skeleton
                                 width={70}
                                 baseColor="#79a6c8"
-                                highlightColor="#256a85"
+                                highlightColor="#3875c3"
                                 duration={5}
                             /></td>
                             <td className="coin-mobile"><Skeleton
                                 width={50}
                                 baseColor="#79a6c8"
-                                highlightColor="#256a85"
+                                highlightColor="#3875c3"
                                 duration={5}
                             /></td>
                             <td><Skeleton
                                 width={60}
                                 baseColor="#79a6c8"
-                                highlightColor="#256a85"
+                                highlightColor="#3875c3"
                                 duration={5}
                             /></td>
                             <td><Skeleton
                                 width={80}
                                 baseColor="#79a6c8"
-                                highlightColor="#256a85"
+                                highlightColor="#3875c3"
                                 duration={5}
                             /></td>
                             <td className="coin-mobile"><Skeleton
                                 width={100}
                                 baseColor="#79a6c8"
-                                highlightColor="#256a85"
+                                highlightColor="#3875c3"
                                 duration={5} /></td>
                             <td className="coin-mobile"><Skeleton
                                 width={100}
                                 baseColor="#79a6c8"
-                                highlightColor="#256a85"
+                                highlightColor="#3875c3"
                                 duration={5}
                             /></td>
                         </tr>
