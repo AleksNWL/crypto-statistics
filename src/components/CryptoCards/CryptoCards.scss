@@ -48,6 +48,13 @@
         cursor: pointer;
     }
 
+    .coin-name {
+        max-width: 150px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        padding: 10px !important;
+    }
 
     th, td {
         text-align: center;
@@ -98,11 +105,19 @@
         }
 
         .coin-name {
-            max-width: 200px;     // Максимальная ширина для ячейки с названием
-            overflow: hidden;     // Скрытие выходящего за пределы контента
-            text-overflow: ellipsis; // Добавление троеточия
-            white-space: nowrap;  // Запрет переноса текста
-            padding: 5px !important; // Уменьшение отступов
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            padding: 5px !important;
+        }
+
+        .coin-price {
+            max-width: 80px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            padding: 2px !important;
         }
     }
 }

@@ -76,7 +76,7 @@ function CryptoChart() {
                                 duration={5}
                             /></td>
                             <td><Skeleton
-                                width={100}
+                                width={70}
                                 baseColor="#79a6c8"
                                 highlightColor="#256a85"
                                 duration={5}
@@ -88,7 +88,7 @@ function CryptoChart() {
                                 duration={5}
                             /></td>
                             <td><Skeleton
-                                width={80}
+                                width={60}
                                 baseColor="#79a6c8"
                                 highlightColor="#256a85"
                                 duration={5}
@@ -150,7 +150,7 @@ function CryptoChart() {
                             </td>
                             <td className="coin-name">{item.name}</td>
                             <td className="coin-mobile">{item.symbol}</td>
-                            <td>{item.currentPrice}</td>
+                            <td className="coin-price">{item.currentPrice}</td>
                             <td className={item.priceChangePercentage24h === null ? "neutral" : item.priceChangePercentage24h < 0 ? "negative" : "positive"}>
                                 {item.priceChangePercentage24h != null ? `${item.priceChangePercentage24h}%` : "N/A"}
                             </td>
